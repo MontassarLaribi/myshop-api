@@ -1,3 +1,4 @@
+import { ProductModule } from './modules/products/product.module';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { CacheInterceptor, CacheModule, Module } from '@nestjs/common';
@@ -22,6 +23,7 @@ import { ConfigModule } from '@nestjs/config';
       logger: 'advanced-console',
       useUnifiedTopology: true
     }),
+    ProductModule
   ],
   controllers: [AppController],
   providers: [
