@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, IsString, Length, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, Length, IsNumber, IsNumberString } from 'class-validator';
 import { ObjectID } from 'mongodb';
 
 export class UpdateProductDto {
@@ -17,6 +17,6 @@ export class UpdateProductDto {
 
   @ApiProperty()
   @IsOptional()
-  @IsNumber()
+  @IsNumberString()
   readonly price: number;
 }
