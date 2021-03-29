@@ -37,6 +37,7 @@
     "imagemin-webp": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.3",
+    "nodemailer": "^6.5.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
