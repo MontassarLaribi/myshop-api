@@ -113,12 +113,23 @@ export class UserService {
     }
   }
 
+  // This needs to change probably in your case (or not if you're doing register but some of the logic might change)
   async create(dto: CreateUserDto): Promise<IUser> {
     const newUser = Object.assign(new UserEntity(), dto);
-    newUser.userCreated = this.request.user._id;
-    newUser.userUpdated = this.request.user._id;
+    let userSaved: UserEntity;
 
-    return await this.userRepository.save(newUser);
+    if (this.request.user) {
+      newUser.userCreated = this.request.user?._id;
+      newUser.userUpdated = this.request.user?._id;
+      userSaved = await this.userRepository.save(newUser);
+    } else {
+      userSaved = await this.userRepository.save(newUser);
+      userSaved.userCreated = userSaved._id;
+      userSaved.userUpdated = userSaved?._id;
+      await this.userRepository.save(newUser);
+    }
+
+    return userSaved;
   }
 
   async update(toUpdate: UserEntity, dto: UpdateUserDto): Promise<IUser> {
